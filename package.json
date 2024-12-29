@@ -1,9 +1,9 @@
 {
   "name": "example-app",
   "scripts": {
-    "build": "webpack --mode development --entry ./src/client/index.js --output ./static/bundle.js",
-    "start": "node src/server/app.js"
-  },
+  "build": "webpack --mode development --entry ./src/client/index.js --output ./build/bundle.js",
+  "start": "node src/server/app.js"
+},
   "dependencies": {
     "express": "^4.17.1"
   },
