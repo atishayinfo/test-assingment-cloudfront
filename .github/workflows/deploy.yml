@@ -26,34 +26,10 @@ jobs:
       with:
         node-version: '16'
 
-    - name: Check directory structure
+    - name: Check directory structure before build
       run: ls -la
 
     - name: Install dependencies
       run: |
-        npm install
-
-    - name: Verify npm installation and configuration
-      run: |
-        node -v
-        npm -v
-
-    - name: Build React app
-      run: |
-        npm run build
-      env:
-        CI: true # Ensures non-interactive environment in build tools
-
-    - name: Verify build directory
-      run: |
-        echo "Checking build/ directory:"
-        ls -la build/
-
-    - name: Deploy to S3
-      run: |
-        aws s3 sync build/ s3://${{ secrets.S3_BUCKET }} --delete
-      if: success() # Only runs if the build directory exists
-
-    - name: Invalidate CloudFront cache
-      run: |
-        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        npm cache clean --force
+        rm -rf n
