@@ -26,19 +26,18 @@ jobs:
       with:
         node-version: '16'
         
-    - name: Check directory structure
-      run: ls -la
-        
-    - name: Install dependencies
+    - name: Check file structure
       run: |
-        npm install
-        
-    - name: Build React app
-      run: |
-         npm run build
-         echo "Contents of build/ directory:"
-         ls -la build/
+         echo "Checking project files..."
+         ls -la
+         echo "Checking src/client directory..."
+         ls -la src/client
 
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build React app
+      run: npm run build
         
     - name: Deploy to S3
       run: |
